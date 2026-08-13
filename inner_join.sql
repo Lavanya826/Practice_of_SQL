@@ -59,6 +59,16 @@ WHERE LOC='CHICAGO';
 
 --Write a query to display the employee name and department name for employees whose department name starts with 'S'.
 
+SELECT E.ENAME,D.DNAME
+FROM EMP E INNER JOIN DEPT D
+ON E.DEPTNO=D.DEPTNO
+WHERE D.DNAME LIKE 'S%';
+
 --Write a query to display the employee name, salary, and department name, sorted by salary in descending order.
+
+SELECT E.ENAME,E.SAL,D.DNAME
+FROM EMP E INNER JOIN DEPT D
+ON E.DEPTNO=D.DEPTNO
+ORDER BY E.SAL DESC;
 
 
