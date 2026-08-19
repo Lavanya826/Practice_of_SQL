@@ -39,6 +39,10 @@ SELECT E.ENAME,D.DEPTNO,D.DNAME,D.LOC
 
 --Write a query to display all employees along with their department name, including employees who don't have a matching department.
 
+SELECT E.ENAME,D.DNAME
+FROM EMP E LEFT JOIN DEPT D
+ON E.DEPTNO=D.DEPTNO;
+
 --Write a query to display employee name, salary, department name, and location for employees whose job is MANAGER, using LEFT JOIN.
 
 --Write a query to display all employees and their department names, sorted by salary in descending order.
