@@ -16,6 +16,17 @@ Display the locations of all departments in which employees work who were hired 
 earning the second maximum salary in the company, receiving a commission greater than the minimum commission in department 30, and reporting to the 
 same manager as JONES.
 Practise: ALL, MAX, nested comparisons, multiple conditions.
+select loc
+  from dept
+  where deptno in (select deptno from emp where hiredate >
+  (select hiredate from emp where ename='smith' ) and hiredate < all 
+  (select hiredate from emp where job='salesman') and job in
+  (select job from emp where ename='allen') and sal < 
+  (Select max(sal) from emp where sal in 
+  (select max(Sal) from emp )) and comm > 
+  (select min(comm) from emp where deptno=30 and comm is not null ) and mgr in 
+  (select mgr from emp where ename='jones'));
+  
 
 Question 3
 Display the department names of employees who work in a different department from KING, have the same job as FORD, were hired before the earliest-hired
