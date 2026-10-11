@@ -3,7 +3,14 @@ Display the department names of all employees who are working in the same depart
 any SALESMAN, earning a salary greater than the minimum salary of department 30, earning a commission less than any employee in department 20, and 
 reporting to the manager of JONES.
 Practise: IN, <>, ANY, MIN, manager subqueries
-
+select dname
+  from dept
+  where deptno in (select deptno from emp where deptno in
+  (select deptno from emp where ename='SCOTT') and job not in (select job from emp where ename='smith') and hiredate > any 
+  (select hiredate from emp where job='salesman') and sal > (select min(sal) from emp where deptno=30) and comm <
+  (select comm from emp where deptno=20) and empno = (select mgr from emp where empno in (select mgr from emp where ename='JONES')));
+  
+          
 Question 2
 Display the locations of all departments in which employees work who were hired after SMITH but before all SALESMAN, working in the same job as ALLEN,
 earning the second maximum salary in the company, receiving a commission greater than the minimum commission in department 30, and reporting to the 
