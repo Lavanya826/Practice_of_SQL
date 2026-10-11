@@ -6,9 +6,13 @@ Practise: IN, <>, ANY, MIN, manager subqueries
 select dname
   from dept
   where deptno in (select deptno from emp where deptno in
-  (select deptno from emp where ename='SCOTT') and job not in (select job from emp where ename='smith') and hiredate > any 
-  (select hiredate from emp where job='salesman') and sal > (select min(sal) from emp where deptno=30) and comm <
-  (select comm from emp where deptno=20) and empno = (select mgr from emp where empno in (select mgr from emp where ename='JONES')));
+  (select deptno from emp where ename='SCOTT') and job not in 
+  (select job from emp where ename='smith') and hiredate > any 
+  (select hiredate from emp where job='salesman') and sal > 
+  (select min(sal) from emp where deptno=30) and comm <
+  (select comm from emp where deptno=20) and empno = 
+  (select mgr from emp where empno in 
+  (select mgr from emp where ename='JONES')));
   
           
 Question 2
