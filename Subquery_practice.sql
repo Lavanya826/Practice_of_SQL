@@ -36,6 +36,17 @@ Question 3
 Display the department names of employees who work in a different department from KING, have the same job as FORD, were hired before the earliest-hired
 employee in department 20, earn the third minimum salary in the company, and receive a commission less than at least one employee in department 10.
 Practise: nested MIN, ANY, department comparisons.
+select dname
+  from dept
+  where deptno in (select deptno from emp where job not in
+                  (select job from emp where ename='king' ) and job in 
+                  (select job from emp where ename='ford' ) and hiredate <
+                  (select min(hiredate) from emp where deptno=20 ) and sal in
+                  (select min(sal) from emp where sal > 
+                  (select min(sal) from emp where sal >
+                  (select min(sal) from emp ))) and comm < any 
+                  (select comm from emp  where deptno=10));
+
 
 Level 2 — Very long questions
 Question 4
